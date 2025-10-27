@@ -1,4 +1,4 @@
-const API_URL = 'http://backend_briyan:5000/api/books';
+const API_URL = 'http://98.85.127.188:5000/api/books';
 
 const bookList = document.getElementById('book-list');
 const bookForm = document.getElementById('book-form');
@@ -9,7 +9,7 @@ const authorNameEl = document.getElementById('author-name');
 // 💡 Cargar libros al inicio
 window.addEventListener('DOMContentLoaded', fetchBooks);
 //Función para traer el nombre del alumno
-fetch('http://backend_briyan:5000/api/books/Chanona')
+fetch('http://98.85.127.188:5000/api/books/Chanona')
   .then(res => res.text()) // o .json() según tu backend
   .then(name => {
     authorNameEl.textContent = `Autor: ${name}`;
