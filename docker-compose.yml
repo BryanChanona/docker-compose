@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  mysql_briyan:
+    image: mysql:8.0
+    container_name: mysql_briyan_db
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD: 123456
+      - MYSQL_DATABASE: briyan_chanona_db
+    volumes:
+      - mysql_data_briyan:/var/lib/mysql
+      - ./db_init:/docker-entrypoint-initdb.d 
+    ports:
+      - "3306:3306"
+    networks:
+      - internal_net
+    
+  backend_briyan:
+    build:
+      context: ./backend_docker
+      dockerfile: Dockerfile
+    container_name: backend_briyan_api
+    restart: unless-stopped
+    depends_on:
+      - mysql_briyan
+    env_file:
+      - ./backend_docker/.env
+    ports:
+      - "5000:5000"
+    networks:
+      - internal_net
+  
+  frontend_briyan:
+    build: 
+      context: ./frontend_docker
+      dockerfile: Dockerfile
+    container_name: frontend_briyan_static
+    restart: unless-stopped
+    depends_on:
+      - backend_briyan
+    ports:
+      - "3000:3000"
+    networks:
+      - internal_net
+  
+volumes:
+  mysql_data_briyan:
+
+networks:
+  internal_net:
+    driver: bridge
+

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Libros</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Mis Libros</h1>
+    <h2 id="author-name"></h2>
+
+
+    <!-- Formulario para crear libro -->
+    <form id="book-form">
+      <input type="text" id="title" placeholder="Título" required>
+      <input type="text" id="description" placeholder="Descripción" required>
+      <button type="submit">Agregar Libro</button>
+    </form>
+
+    <!-- Lista de libros -->
+    <ul id="book-list"></ul>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
