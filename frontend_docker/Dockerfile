@@ -2,10 +2,16 @@ FROM node:18-slim
 
 WORKDIR /usr/src/app
 
+# Copiar package.json y package-lock.json
 COPY package*.json ./
-RUN npm ci --production
 
+# Instalar todas las dependencias (incluyendo dev para http-server)
+RUN npm install
+
+# Copiar el resto de la app
 COPY . .
 
 EXPOSE 3000
-CMD ["npx", "http-server", " -p", "3000", "--cors"]
+
+# Comando correcto sin espacios extra
+CMD ["npx", "http-server", "-p", "3000", "--cors"]
